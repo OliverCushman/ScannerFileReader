@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 /**
  * Average each row of ten test scores
@@ -23,7 +24,26 @@ public class ScannerReadCSVFile
         while (scanner.hasNext()) {
             // Read the next line of the file
             String line = scanner.nextLine();
-            System.out.println(line);
+            Scanner nums = new Scanner(line);
+            nums.useDelimiter(",");
+            while (nums.hasNext())
+            {
+                String number = nums.next();
+                String[] arr = new String[11];
+                for (int i = 0; i < arr.length; i++) {
+                    arr[i] = number;
+                }
+                String classsec = arr[0];
+                String[] scores = Arrays.copyOfRange(arr, 1, 11);
+                int add = 0;
+                int tempstore;
+                for (int a = 0; a < scores.length; a++) {
+                    tempstore = Integer.parseInt(scores[a]);
+                    add += tempstore;
+                    tempstore = 0;
+                }
+                float avg = (float) add / scores.length;
+            }
 
             // line now contains a line of comma-separated numbers
             // representing 10 test scores for each class.
