@@ -28,25 +28,20 @@ public class ScannerReadCSVFile
             String line = scanner.nextLine();
             Scanner nums = new Scanner(line);
             nums.useDelimiter(",");
-            int i = 0; //variable for pseudo-for-loop below
-            String[] arr = new String[11]; //Array for each value on line
-            while (nums.hasNext())
-            {
-                String numberstr = nums.next();
-                arr[i] = numberstr;
-                if (i < 11) {
-                    i++;
-                }
-            }
             int sum = 0;
-            for (int a = 1; a < arr.length; a++) {
-                sum += Integer.parseInt(arr[a]);
-            }
-            int avg = sum / (arr.length - 1);
+            int sec = 0;
             if (lines == 1) {
-                System.out.println("Class: Avg score");
+                System.out.println("Class section" + ": " + "avg");
             } else {
-                System.out.println(arr[0] + ": " + avg);
+                while (nums.hasNext()) {
+                    int i = nums.nextInt();
+                    if (i <= 999) {
+                        sum += i;
+                    } else {
+                        sec = i;
+                    }
+                }
+                System.out.println(sec + ": " + (sum / 10));
             }
             lines++;
         }
